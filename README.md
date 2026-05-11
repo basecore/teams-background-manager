@@ -2,210 +2,136 @@
   <img src="image/readme-banner.png" alt="Teams Animated Background Manager Banner" width="100%">
 </p>
 
-# Teams Animated Background Manager 🎥✨
-
-[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Windows](https://img.shields.io/badge/Platform-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/windows/)
-[![PyInstaller](https://img.shields.io/badge/Built_with-PyInstaller-5A3E85?style=for-the-badge)](https://www.pyinstaller.org/)
-[![OpenCV](https://img.shields.io/badge/Video-OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
-[![AI Assisted](https://img.shields.io/badge/AI-Assisted-blue?style=for-the-badge&logo=google)](https://github.com/basecore)
-
-A local Windows desktop utility for managing, replacing, previewing, and optimizing animated Microsoft Teams backgrounds.
-
-This application was created for users who want to inject custom MP4 video backgrounds into the **new Microsoft Teams** client, while keeping the process transparent, reversible, and easier to use than manually editing hidden cache folders.
+<h1 align="center">Teams Animated Background Manager 🎥✨</h1>
 
 <p align="center">
-  <img src="image/screenshot1.png" alt="Main UI Screenshot" width="45%">
-  &nbsp;&nbsp;&nbsp;
-  <img src="image/screenshot2.png" alt="Editor Screenshot" width="45%">
+  A local Windows desktop app to replace, preview, optimize, and manage animated Microsoft Teams backgrounds.
+</p>
+
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.x">
+  </a>
+  <a href="https://opencv.org/">
+    <img src="https://img.shields.io/badge/OpenCV-Video_Processing-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
+  </a>
+  <a href="https://www.pyinstaller.org/">
+    <img src="https://img.shields.io/badge/Built_with-PyInstaller-5A3E85?style=for-the-badge" alt="PyInstaller">
+  </a>
+  <a href="https://github.com/basecore">
+    <img src="https://img.shields.io/badge/AI_Assisted-Perplexity_%26_Gemini-blue?style=for-the-badge&logo=google" alt="AI Assisted">
+  </a>
+</p>
+
+<p align="center">
+  <img src="image/screenshot1.png" alt="Main App Screenshot" width="46%">
+  &nbsp;
+  <img src="image/screenshot2.png" alt="Video Editor Screenshot" width="46%">
 </p>
 
 ---
 
-## Overview
+## Contents
 
-Microsoft Teams includes several built-in animated backgrounds, but it does not currently provide an official UI for uploading custom MP4 animated backgrounds in the same way. This tool works locally by replacing the cached MP4 files used by selected built-in animated backgrounds.
-
-The app helps with:
-- finding the correct Teams background cache folder,
-- previewing existing/custom videos,
-- replacing default animated backgrounds with your own MP4 files,
-- optimizing oversized files to reduce bandwidth and storage usage,
-- restoring or resetting changes,
-- restarting Teams so changes become active quickly.
-
-> Important: the **thumbnail shown inside Microsoft Teams itself does not change**. Teams continues to display the original built-in preview image, even if the underlying video file was replaced.
+- [What this app is](#what-this-app-is)
+- [Why it exists](#why-it-exists)
+- [Features](#features)
+- [Tested environment](#tested-environment)
+- [Installation](#installation)
+- [How to use](#how-to-use)
+- [How it works](#how-it-works)
+- [Security and transparency](#security-and-transparency)
+- [Python modules used](#python-modules-used)
+- [Building the EXE](#building-the-exe)
+- [VirusTotal verification](#virustotal-verification)
+- [Known limitations](#known-limitations)
+- [Roadmap ideas](#roadmap-ideas)
+- [Credits](#credits)
+- [Disclaimer](#disclaimer)
 
 ---
 
-## Main Features
+## What this app is
+
+**Teams Animated Background Manager** is a local desktop utility for Windows that helps users replace built-in animated Microsoft Teams background videos with custom MP4 files.
+
+It is designed to make this process easier, safer, and more transparent than manually browsing hidden cache folders inside Windows.
+
+The app can:
+- detect the Teams animated background folder,
+- show previews of current and original backgrounds,
+- replace built-in animated background videos,
+- optimize large video files,
+- preview animations inline,
+- and restore/reset changes.
+
+---
+
+## Why it exists
+
+Microsoft Teams includes built-in animated backgrounds, but there is currently no simple official workflow for assigning your own custom MP4 animated backgrounds in the same way.
+
+This tool uses a **local replacement approach**:
+- it identifies the Teams animated background cache files,
+- lets you replace selected built-in MP4 files with your own video,
+- and helps keep those files small and practical for meetings.
+
+> **Important:** The static preview thumbnail shown inside Microsoft Teams usually stays the same. Teams still shows the original built-in image even when the underlying video file has been replaced.
+
+---
+
+## Features
 
 ### 🎬 Inline preview player
-Click the current video thumbnail directly inside the app to play or stop the animation inline. No separate preview window is required.
+Click the thumbnail of the **Current Video** inside the app to play or stop the animation directly in place.
 
 ### ⚡ Auto optimization
-Large videos can be automatically reduced in size by lowering resolution and/or frame rate. The app avoids saving an optimized result if it would become larger than the original input file.
+Large videos can be reduced automatically by lowering resolution and/or frame rate.  
+If the optimized result would become larger than the original, the app aborts the save and keeps the original file.
 
-### 🛠 Video editor
-Built-in OpenCV-based editing modes:
-- Crop / Zoom
-- Zoom In
-- Add Black Borders / Pad
-- Stretch to 16:9
+### 🛠 Built-in video editor
+The integrated editor includes:
+- **Crop / Zoom** — fills the frame and removes outer edges
+- **Zoom In** — extra zoom to remove hardcoded black bars
+- **Pad / Add Black Borders** — fits the entire video into 16:9 with borders
+- **Stretch** — stretches the image to match 16:9 exactly
 
-### 🛡 Backup and reset workflow
-The tool keeps local backup/reset logic so changes are reversible. “Delete / Reset” removes the custom MP4 so Teams can fall back to its original cached/default behavior.
+### 🛡 Reset and restore behavior
+The app supports resetting custom replacements so Teams can fall back to its original default/cached animation again.
 
 ### ⚠ File size warnings
-Visual warnings help identify backgrounds that may be too large for practical use:
-- Warning above medium size
-- Critical warning above large size
+The interface highlights videos that may be too large for practical use:
+- medium warning for larger files,
+- critical warning for very large files.
 
-### 🌍 Bilingual interface
-German and English UI are supported.
+### 🌍 Bilingual UI
+The interface supports:
+- German
+- English
 
-### 🚀 Teams restart button
-The tool can terminate and relaunch the Teams client to make changes visible faster.
-
----
-
-## Tested Environment
-
-This project has been tested with:
-
-- **Operating System:** Windows 10 / Windows 11
-- **Microsoft Teams Client:** New Microsoft Teams
-- **Tested Teams version:** `26093.415.4620.1935`
-- **Verification date:** May 11, 2026
-
-Because Microsoft may change internal cache paths or file naming conventions in future Teams releases, compatibility with later builds cannot be guaranteed.
+### 🚀 Teams restart
+The app can stop and restart Teams so the new background file is picked up faster.
 
 ---
 
-## Security / Trust Statement
+## Tested environment
 
-This project is designed as a **local-only utility**. It is intended to be transparent and auditable, especially for use on work computers where trust matters.
-
-### What the app does
-- Reads files from the local Microsoft Teams animated background cache folder.
-- Writes/replaces local MP4 files in that folder.
-- Creates local backup or restore copies.
-- Reads video metadata such as file size, resolution, and frames.
-- Processes local video files with OpenCV.
-- Optionally terminates and restarts the local Teams process.
-
-### What the app does NOT do
-- No custom backend server communication.
-- No telemetry or analytics.
-- No advertisement SDKs.
-- No auto-update system.
-- No scheduled tasks.
-- No autorun registration.
-- No registry persistence mechanism.
-- No credential collection.
-- No keyboard logging.
-- No browser data access.
-- No arbitrary remote code execution feature.
-
-### Security-sensitive capabilities
-The application **does** modify files under the local Teams cache path and **does** interact with the local Teams process. These are intentional features, but they are also the reason why internal IT or endpoint protection tools may want to inspect the binary before trusting it.
-
-### Recommendation for enterprise use
-For work computers, it is recommended to:
-- review the Python source code,
-- build the EXE internally if possible,
-- publish a SHA256 checksum,
-- run the file through VirusTotal,
-- optionally have internal IT whitelist the binary or certificate.
-
----
-
-## Is this app malware?
-
-There is no intended malicious behavior in this project. However, like many internal utilities, it has capabilities that overlap with actions security software watches closely:
-- local file replacement,
-- process termination/restart,
-- packaged Python runtime,
-- media processing libraries.
-
-That means security tools may still flag the EXE heuristically even if the source code is benign. This is especially common for unsigned executables packaged with PyInstaller, because PyInstaller bundles Python and dependencies and can extract them at runtime in some build modes [page:1][page:3].
-
-This does **not automatically mean the app is dangerous**, but it does mean transparency is important.
-
----
-
-## Python Modules Used
-
-The application uses the following main libraries:
-
-| Module | Purpose |
+| Item | Value |
 |---|---|
-| `customtkinter` | Modern Windows-style GUI built on top of Tkinter |
-| `Pillow` | Image loading, resizing, thumbnail handling, icon drawing |
-| `opencv-python` (`cv2`) | Video reading, frame extraction, resizing, padding, cropping, encoding |
-| `numpy` | Efficient image/frame array handling for OpenCV operations |
-| `psutil` | Detecting, stopping, and restarting Teams-related processes |
-| `pathlib` | Safe path construction for Windows folders |
-| `shutil` | Copying, replacing, and deleting files |
-| `threading` | Background operations to keep UI responsive |
-| `base64`, `io` | Embedded preview image handling |
-| `datetime`, `time`, `os`, `sys` | Standard Python runtime and file/process helpers |
+| Operating System | Windows 10 / 11 |
+| Microsoft Teams | New Microsoft Teams |
+| Tested version | `26093.415.4620.1935` |
+| Verification date | May 11, 2026 |
 
-### Why these modules are needed
-- Without **OpenCV**, the app could not inspect, transform, preview, or optimize video files.
-- Without **Pillow**, thumbnail and preview image handling would be harder.
-- Without **psutil**, restarting Teams would be less robust.
-- Without **customtkinter**, the interface would be much more basic.
+Because Microsoft may change internal paths and file handling in future releases, compatibility with later versions cannot be guaranteed.
 
 ---
 
-## Local Paths Used
+## Installation
 
-The app primarily targets this Teams cache location:
+### Option A — Run from Python source
 
-```text
-%LOCALAPPDATA%\Packages\MSTeams_8wekyb3d8bbwe\LocalCache\Microsoft\MSTeams\Backgrounds
-```
-
-If Microsoft changes this path in future versions, the tool may need updates.
-
-Backups are stored locally in the user profile, for example:
-
-```text
-%USERPROFILE%\Teams_Background_Backups
-```
-
-No cloud storage is used by the app itself.
-
----
-
-## How It Works
-
-1. The app locates the local Teams animated background cache folder.
-2. It matches known built-in animated background filenames.
-3. It shows a local preview of:
-   - the current file in the Teams folder,
-   - the original built-in preview reference,
-   - the file name and size information.
-4. The user can replace a built-in animated background with a custom MP4.
-5. The app can optionally optimize the video to reduce size.
-6. The Teams process can be restarted so the change is applied faster.
-
----
-
-## Limitations
-
-- The thumbnail shown inside Microsoft Teams itself cannot currently be changed reliably.
-- This tool depends on internal Teams cache behavior that Microsoft may change at any time.
-- Some video transformations may reduce quality in exchange for smaller file size.
-- Some enterprise endpoint protection tools may still warn about the EXE until it is whitelisted or code-signed.
-
----
-
-## Source Usage
-
-### Run from Python source
-If you want full transparency, you can run the source directly:
+Clone the repository and run the script directly:
 
 ```bash
 git clone https://github.com/basecore/teams-background-manager.git
@@ -213,16 +139,143 @@ cd teams-background-manager
 python Teams_Manager_v12_0_Komplett.py
 ```
 
-> For enterprise trust, running from reviewed source code is often preferable to using a prebuilt EXE.
+> On some development builds, the script may auto-install required dependencies if they are missing. For enterprise deployment, a prebuilt EXE is usually the better option.
+
+### Option B — Use the packaged EXE
+
+Download the EXE from the project release section and run it directly on Windows.
+
+For enterprise/work PCs, a reviewed internal build is recommended.
+
+---
+
+## How to use
+
+1. Start the application.
+2. Let it scan the local Teams animated background folder.
+3. Select one of the built-in animated background slots.
+4. Click **Replace** and choose your custom MP4 file.
+5. If the video is too large, use **Auto-Opt.** or open the **Editor**.
+6. Click the **Current Video** thumbnail to preview the animation inline.
+7. Click **Teams Restart** to reload the Teams client.
+8. In Microsoft Teams, select the original built-in animated thumbnail that corresponds to the replaced slot.
+
+> **Note:** The image shown in Teams may still look like the original Microsoft preview, even though the underlying animated video is now your custom file.
+
+---
+
+## How it works
+
+The app operates locally on the user machine.
+
+### Main workflow
+1. Detect the Teams background cache path.
+2. Identify known animated background filenames.
+3. Show both:
+   - the currently active local file,
+   - and the original preview reference.
+4. Replace the selected Teams MP4 with a custom MP4.
+5. Optionally optimize that file with OpenCV.
+6. Restart Teams so the replacement becomes active more quickly.
+
+### Main local folder used
+
+```text
+%LOCALAPPDATA%\Packages\MSTeams_8wekyb3d8bbwe\LocalCache\Microsoft\MSTeams\Backgrounds
+```
+
+### Local backup/reset folder
+
+```text
+%USERPROFILE%\Teams_Background_Backups
+```
+
+---
+
+## Security and transparency
+
+This section is intentionally detailed, because the app may be used on work computers and should be easy to review.
+
+### What the app does
+- Reads files from the local Teams animated background folder.
+- Writes and replaces local MP4 files in that folder.
+- Reads video metadata such as file size, resolution, and frames.
+- Processes local video files with OpenCV.
+- Can terminate and restart the local Teams process.
+- Stores local backup/reset data in the user profile.
+
+### What the app does **not** do
+- No custom cloud backend communication.
+- No user tracking or analytics.
+- No telemetry.
+- No ads.
+- No credential collection.
+- No keystroke logging.
+- No browser data extraction.
+- No scheduled tasks.
+- No persistence mechanism.
+- No autorun installation.
+- No hidden service.
+
+### Is this a security risk?
+The app is **not intended as malware**, but it does have capabilities that security software may inspect carefully:
+- modifying files in `%LOCALAPPDATA%`,
+- replacing cached application media,
+- terminating/restarting a user application,
+- bundling Python and dependencies into an EXE.
+
+That does **not** automatically make it dangerous, but it does mean the binary may require explanation, review, or whitelisting in enterprise environments.
+
+### Honest risk assessment
+Potential concern areas to review in source code:
+- file write/delete operations,
+- process management,
+- runtime dependency installation in developer builds,
+- packaging behavior of PyInstaller,
+- false positives from unsigned EXEs.
+
+### Recommendation for company use
+For internal/company deployment, the most trustworthy workflow is:
+- review the Python source code,
+- build the EXE internally,
+- publish SHA256 hashes,
+- check the EXE in VirusTotal,
+- optionally sign the EXE,
+- optionally have internal IT/security whitelist the release.
+
+---
+
+## Python modules used
+
+| Module | Purpose |
+|---|---|
+| `customtkinter` | Modern GUI on top of Tkinter |
+| `Pillow` | Image loading, resizing, thumbnail rendering |
+| `opencv-python` (`cv2`) | Video reading, frame extraction, scaling, crop, pad, stretch, preview |
+| `numpy` | Array processing for frames and image data |
+| `psutil` | Teams process detection, stop, restart |
+| `pathlib` | Safer Windows path handling |
+| `shutil` | Copy, replace, delete files |
+| `threading` | Background tasks without freezing the UI |
+| `base64`, `io` | Embedded preview image handling |
+| `datetime`, `time`, `os`, `sys` | Standard runtime and file/process helpers |
+
+### Why these modules are needed
+- **OpenCV** is required for video processing and frame-based editing.
+- **Pillow** is used for image handling and thumbnails.
+- **psutil** is used to restart Teams reliably.
+- **customtkinter** provides the modern desktop interface.
+- **numpy** supports efficient frame manipulation for OpenCV.
 
 ---
 
 ## Building the EXE
 
-This project can be packaged into a Windows executable using **PyInstaller**, which bundles the Python interpreter and dependencies into a distributable application [page:1].
+This project can be packaged into a Windows executable using **PyInstaller**, which bundles Python together with the required libraries [page:1].
 
 ### Recommended build for work environments
-Use **onedir** mode first, because it tends to look less suspicious to antivirus tools than onefile mode [page:3].
+
+For enterprise or office PCs, `--onedir` is usually preferable because single-file packaging can trigger antivirus heuristics more often [page:2].
 
 ```bash
 pip install -U pyinstaller
@@ -230,124 +283,69 @@ pyinstaller --clean --noconfirm --windowed --onedir --name "TeamsBackgroundManag
 ```
 
 ### Single-file build
-If you prefer one EXE file:
 
 ```bash
 pip install -U pyinstaller
 pyinstaller --clean --noconfirm --onefile --windowed --name "TeamsBackgroundManager" --icon app.ico Teams_Manager_v12_0_Komplett.py
 ```
 
-### What these options mean
-- `--clean` removes previous PyInstaller cache before building [page:1]
-- `--noconfirm` overwrites old build folders without asking [page:1]
-- `--windowed` / `--noconsole` creates a GUI app without a console window [page:1]
-- `--onedir` creates a folder build, which is often better for enterprise trust [page:1][page:3]
-- `--onefile` creates a single EXE, but may trigger AV heuristics more often [page:3]
-- `--icon app.ico` sets the Windows executable icon [page:1]
+### Meaning of the build flags
+- `--clean` removes old build cache before packaging [page:1]
+- `--noconfirm` overwrites previous build folders without asking [page:1]
+- `--windowed` creates a GUI app without a console window [page:1]
+- `--onedir` creates a folder-based build [page:1]
+- `--onefile` creates a single EXE file [page:1]
+- `--icon` assigns a custom Windows executable icon [page:1]
 
-### Important recommendation
-For company PCs, prefer:
-1. reviewed source code,
-2. `--onedir` builds,
-3. code signing,
-4. published SHA256 hashes,
-5. internal IT whitelisting if needed.
+### Enterprise note
+Unsigned PyInstaller binaries can trigger SmartScreen or antivirus false positives, especially in `--onefile` mode, because the packaging/extraction behavior can look suspicious heuristically [page:2]. For company rollout, signed builds and internal whitelisting are recommended [page:2].
 
 ---
 
-## Antivirus / SmartScreen Notes
+## VirusTotal verification
 
-Packaged Python applications can trigger false positives. This is a known issue with tools like PyInstaller because the packaging and extraction pattern resembles behavior used by some malware families [page:3].
+To improve trust, every public EXE release should be checked manually with VirusTotal before distribution.
 
-### To reduce false positives
-- Use the latest PyInstaller version [page:3]
-- Prefer `--onedir` instead of `--onefile` [page:3]
-- Code-sign the EXE if possible [page:3]
-- Let internal IT or endpoint security teams review and whitelist the build
-- Publish SHA256 checksums for each release
+### Release scan record
 
-### Optional code-signing example
-If you have a valid code-signing certificate, you can sign the EXE with Microsoft `signtool`:
+Fill this section in after uploading your EXE:
 
-```bash
-signtool sign /f your_certificate.pfx /p your_password /tr http://timestamp.sectigo.com /td sha256 /fd sha256 dist\\TeamsBackgroundManager.exe
-```
-
-Code signing can help reduce SmartScreen and antivirus distrust, although it does not guarantee zero false positives [page:3].
-
----
-
-## VirusTotal Verification
-
-To increase trust, each public release can be uploaded to VirusTotal manually.
-
-### Planned release verification section
-You can paste the results here after uploading the EXE:
-
-- **Version tested:** `v12.0.0`
-- **Build type:** `PyInstaller onedir` or `PyInstaller onefile`
-- **SHA256:** `PASTE_HASH_HERE`
-- **VirusTotal link:** `PASTE_LINK_HERE`
-- **Detection ratio:** `PASTE_RESULT_HERE`
-- **Scan date:** `PASTE_DATE_HERE`
+| Field | Value |
+|---|---|
+| Version | `v12.0.0` |
+| Build type | `PyInstaller onedir` / `PyInstaller onefile` |
+| SHA256 | `PASTE_HASH_HERE` |
+| VirusTotal URL | `PASTE_LINK_HERE` |
+| Detection ratio | `PASTE_RESULT_HERE` |
+| Scan date | `PASTE_DATE_HERE` |
 
 ### Suggested interpretation
-- A result of `0/x` is ideal.
-- A few heuristic detections can happen with packaged Python apps and do not automatically mean the file is malicious.
-- Any positive detection should still be reviewed carefully before distribution.
+- `0/x` is the ideal result.
+- A few heuristic detections can happen with packaged Python applications and do not automatically prove malicious behavior [page:2].
+- Any detection should still be reviewed carefully before deployment.
 
 ---
 
-## Recommended Release Checklist
+## Known limitations
 
-Before sharing the EXE with colleagues:
-
-- [ ] Review the full source code
-- [ ] Remove auto-install behavior from production EXE builds
-- [ ] Build with latest PyInstaller
-- [ ] Prefer `--onedir` for internal deployment
-- [ ] Generate SHA256 checksum
-- [ ] Upload the EXE to VirusTotal
-- [ ] Paste VirusTotal result into this README
-- [ ] Optionally sign the EXE
-- [ ] Let IT/security review before wider rollout
+- The preview thumbnail inside Microsoft Teams itself cannot reliably be changed.
+- The tool depends on internal Teams cache behavior, which Microsoft may change in future versions.
+- Some optimizations trade video quality for smaller file size.
+- Some enterprise endpoint security tools may still warn about unsigned EXEs.
+- Developer builds that auto-install dependencies may be less suitable for locked-down workstations.
 
 ---
 
-## Usage Guide
+## Roadmap ideas
 
-1. Start the application.
-2. Let it scan the Teams background folder.
-3. Choose a built-in animated background slot to replace.
-4. Click **Replace** and select your custom MP4.
-5. Use **Auto-Opt.** if the file is too large.
-6. Use **Editor** if you need crop, zoom, padding, or stretch.
-7. Click the current preview thumbnail to play/pause inline.
-8. Click **Teams Restart** to reload the client.
-9. In Microsoft Teams, select the original built-in animated thumbnail that corresponds to the replaced file.
-
----
-
-## Known Caveat About Teams Thumbnails
-
-Even after replacing the MP4 file, Teams will usually continue to show the original built-in static thumbnail image. This is a limitation of how the Teams client references those previews internally.
-
-So in practice:
-- the thumbnail in Teams may still look like “Animated feeling dreamy”,
-- but the video that actually plays can be your custom replacement.
-
----
-
-## Why this tool exists
-
-Manually editing Teams cache folders is error-prone and inconvenient for non-technical users. This application makes the process:
-- visible,
-- reversible,
-- safer,
-- faster,
-- and easier to understand.
-
-It is mainly intended for private/internal use, labs, workshops, and small teams that want custom animated backgrounds without asking every user to edit hidden Windows directories manually.
+- Drag & Drop support
+- GIF to MP4 conversion
+- Batch optimization for all backgrounds
+- Trim start/end of video
+- Better black-bar detection
+- Export optimized video to separate folder
+- Signed enterprise release workflow
+- Published checksum file for every release
 
 ---
 
@@ -361,8 +359,9 @@ It is mainly intended for private/internal use, labs, workshops, and small teams
 
 ## Disclaimer
 
-This project is not affiliated with or endorsed by Microsoft.
+This project is **not affiliated with or endorsed by Microsoft**.
 
-It modifies local Microsoft Teams cache files on the user’s machine. Use it only if this is permitted by your company policy and IT security rules.
+It modifies local Microsoft Teams cache files on the user’s machine.  
+Use it only if this is permitted by your company policy and internal IT/security rules.
 
 Use at your own risk.
