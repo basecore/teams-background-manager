@@ -314,10 +314,10 @@ Fill this section in after uploading your EXE:
 |---|---|
 | Version | `v12.0.0` |
 | Build type | `PyInstaller onedir` / `PyInstaller onefile` |
-| SHA256 | `PASTE_HASH_HERE` |
-| VirusTotal URL | `PASTE_LINK_HERE` |
-| Detection ratio | `PASTE_RESULT_HERE` |
-| Scan date | `PASTE_DATE_HERE` |
+| SHA256 | `826D85060EFEC40071D6671E68BBB5667693D8EBB5DD470C2876D4273F533DC9` |
+| VirusTotal URL | `https://www.virustotal.com/gui/file/826d85060efec40071d6671e68bbb5667693d8ebb5dd470c2876d4273f533dc9?nocache=1` |
+| Detection ratio | `1/68` |
+| Scan date | `12.05.2026` |
 
 ### Suggested interpretation
 - `0/x` is the ideal result.
